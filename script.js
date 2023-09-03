@@ -3,7 +3,7 @@
 function generateKeyframes() {
     let keyframes = `@keyframes move {`;
 // Number of steps in the animation
-    const steps = 50;
+    const steps = 100;
 
     // Calculate step increments for translation
     const stepX = 50 / steps; // 100vw divided by steps
@@ -12,12 +12,12 @@ function generateKeyframes() {
     // Generate keyframes
     for (let i = 0; i <= steps; i++) {
         const keyframeSel = (i * 100) / steps;
-        const x = 51* Math.cos((360 / steps) * i * (Math.PI / 180))+50;
-        const y = 51*Math.sin((360 / steps) * i * (Math.PI / 180));
-        
+        const x = -55* Math.cos((180 / steps) * i * (Math.PI / 180))+55;
+        const y = -55*Math.sin((180 / steps) * i * (Math.PI / 180));
+        const xoffset = -20*Math.cos((180 / steps) * i * (Math.PI / 180));
         keyframes += `
         ${keyframeSel}% {
-            transform: translate(${x}vw, ${y}vh);
+            transform: translate(${x}vw, ${y}vh) ;
         }
     `;
        

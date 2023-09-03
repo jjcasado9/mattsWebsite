@@ -87,10 +87,10 @@ ul {
     height: 20vmin;
     border-radius: 20vmin;
     z-index: -1;
-    left: -10vmin;
-    bottom:  -10vmin;
+    left: -10vw;
+    bottom:  -10vh;
     background-color: rgb(188, 184, 27);
-    animation: move 10s linear infinite;
+    animation: move 36s linear infinite;
   }
 
   /* Isolation creates a new stacking context for mix-blend-mode. See: https://developer.mozilla.org/en-US/docs/Web/CSS/isolation */
@@ -131,11 +131,12 @@ ul {
   .moon {
     position: fixed;
     background-color: #c3c3b8;
-    left: -10vmin;
-    bottom: -10vmin;
+    left: -10vw;
+    bottom: -10vh;
     width: 20vmin;
     height: 20vmin;
     border-radius: 10vmin;
     z-index: 0;
+    animation: move 12s linear infinite;
    
   }
