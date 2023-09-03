@@ -1,0 +1,132 @@
+
+@font-face {
+    font-family: PPMori-Regular;
+    src: url(assets/fonts/PPMori-Regular.otf);
+  }
+
+body{
+    margin-left:  2.7vw;
+    margin-right:  2.7vw;
+    font-family: 'PPMori-Regular';
+    box-sizing: border-box; 
+}
+
+.webHeader{
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.webName{
+    color: black;
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 32px;
+    word-wrap: break-word;
+    
+}
+
+.topLinks{
+    display: flex;
+    margin-right: 0px;
+    flex-basis: 30%;
+    color: black;
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 32px;
+    word-wrap: break-word;
+    justify-content: space-between;
+    
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    
+  }
+  
+ul {
+    
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    gap:5vw;
+  }
+
+  .mainContent{
+    padding-top: 50px;
+  }
+
+ 
+
+  .sun {
+    position: fixed; 
+    /* resulting css */
+    filter: contrast(100%) brightness(100%);
+    background: 
+      radial-gradient(circle at 50% 50%, rgba(255,241,79,1), rgba(255,181,0,1));
+
+    width: 20vmin;
+    height: 20vmin;
+    border-radius: 20vmin;
+    z-index: -1;
+    left: 0%;
+    right: 0%;
+    bottom: 100%; 
+    background-color: rgb(188, 184, 27);
+    
+    
+  }
+
+  @keyframes myOrbit {
+    from { transform: rotate(0deg) translateX(0vw); }
+    to   { transform: rotate(360deg) translateX(0vw); }
+}
+
+  
+  /* Isolation creates a new stacking context for mix-blend-mode. See: https://developer.mozilla.org/en-US/docs/Web/CSS/isolation */
+  .isolate {
+    
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+  }
+  
+  /* Magic: using the noise SVG as a background, and then upping the contrast and brightness
+  
+  /* Note: Importing the noise.svg from an external site, but in practice you would simply point to the svg file as a relative path. (Referencing its id doesn't work either) */
+  
+  .sun-shadow {
+    
+    background: radial-gradient(circle at 50% 50%, rgba(255, 243, 0, 1), #ffe47e);  width: 20vmin;
+    height: 20vmin;
+    width: 20vmin;
+    border-radius: 20vmin;
+  }
+  
+  /* The smooth gradient to give the ball some sheen. Blending with the noise further sharpens it. */
+  
+  .sun-light {
+    position: absolute;
+    height: 20vmin;
+    width:20vmin;
+    border-radius: 20vmin;
+    filter: contrast(100%) brightness(100%);
+    background: 
+      radial-gradient(circle at 50% 50%, rgba(255,241,79,0.6), rgba(255, 181, 0, 0.89)),url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E"); 
+    
+    mix-blend-mode: multiply;
+  }
+  
+  .moon {
+    position: fixed;
+    background-color: #c3c3b8;
+    left: 0%;
+    top: 30%;
+    width: 20vmin;
+    height: 20vmin;
+    border-radius: 10vmin;
+    z-index: 0;
+   
+  }
