@@ -1,54 +1,32 @@
 
 
-let time_window = 1000 * 60 * 1;
-let startTime = new Date();
+function generateKeyframes() {
+    let keyframes = `@keyframes move {`;
+// Number of steps in the animation
+    const steps = 50;
 
-const moon = document.querySelector('.moon'); 
-const sun = document.querySelector('.sun'); 
+    // Calculate step increments for translation
+    const stepX = 50 / steps; // 100vw divided by steps
+    const stepY = 20 / steps;  // 50vh divided by steps
 
-let windowWidth = window.innerWidth;
-let moon_width = parseInt(moon.clientWidth, 10) * 100 / windowWidth;
-let sun_width = parseInt(sun.clientWidth, 10) * 100 / windowWidth;
-
-
-window.onresize = function() {
-  //Be careful about calculating too many things in the resize handler!
-  //This isn't that intensive, so it shouldn't matter, but look into "debouncing" if you have things like this elsewhere
-  moon_width = parseInt(moon.clientWidth, 10) * 100 / windowWidth;
-  sun_width = parseInt(sun.clientWidth, 10) * 100 / windowWidth;
-  windowWidth = window.innerWidth;
-};
-
-function runDay() {
-
-
-    let now = (Date.now() - startTime) % time_window;
-
-    let offsety = -Math.sin((now) * (2 * Math.PI / (time_window * 2))) * 60 + 100;
-    let offsetx = -Math.cos((now) * (2 * Math.PI / (time_window * 2))) * 50 + 50 - sun_width / 2;
-    let offsetymoon = -Math.sin(now * (2 * Math.PI / (time_window * 0.4))) * 60 + 100;
-    let offsetxmoon = -Math.cos(now * (2 * Math.PI / (time_window * 0.4))) * 50 + 50 - moon_width / 2;
-
-    /*Solar Eclipse */
-    if (Math.abs(offsety - offsetymoon) < 15 && Math.abs(offsetx - offsetxmoon) < 15 && (offsetxmoon > 30) && (offsetxmoon < 45)) {
-        document.body.style.backgroundColor = '#8b8b76';
-        document.body.style.transitionDuration = "3.3s";
-
+    // Generate keyframes
+    for (let i = 0; i <= steps; i++) {
+        const keyframeSel = (i * 100) / steps;
+        const x = 51* Math.cos((360 / steps) * i * (Math.PI / 180))+50;
+        const y = 51*Math.sin((360 / steps) * i * (Math.PI / 180));
         
-    } else if (Math.abs(offsety - offsetymoon) < 12 && Math.abs(offsetx - offsetxmoon) < 12 && (offsetxmoon > 45) && (offsetxmoon < 55)) {
-        document.body.style.backgroundColor = '#fff';
-        document.body.style.transitionDuration = "3.3s";
-
-    } else {
+        keyframes += `
+        ${keyframeSel}% {
+            transform: translate(${x}vw, ${y}vh);
+        }
+    `;
+       
     }
-    /*Updating positions*/
-    sun.style.top= offsety + 'vh';
-    sun.style.left = offsetx + 'vw';
-    moon.style.top = offsetymoon + 'vh';
-    moon.style.left = offsetxmoon + 'vw';
-
-    window.requestAnimationFrame(runDay);
-
-
+    keyframes += `}`;
+    return keyframes;
 }
-runDay();
+// Create a style element to hold the keyframes
+
+
+const styleSheet = document.styleSheets[0];
+styleSheet.insertRule(generateKeyframes(), styleSheet.cssRules.length);
