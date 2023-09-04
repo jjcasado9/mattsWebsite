@@ -1,5 +1,7 @@
 
-
+function calcVmin(){
+    return Math.min(window.innerWidth, window.innerHeight);
+} 
 function generateKeyframes() {
     let keyframes = `@keyframes move {`;
 // Number of steps in the animation
@@ -26,7 +28,44 @@ function generateKeyframes() {
     return keyframes;
 }
 // Create a style element to hold the keyframes
-
-
 const styleSheet = document.styleSheets[0];
 styleSheet.insertRule(generateKeyframes(), styleSheet.cssRules.length);
+
+
+function setBgColor(color){
+    
+}
+
+
+
+function checkOverlap(){
+
+    const sun = document.getElementById("sun");
+    const rectSun = sun.getBoundingClientRect();
+    const moon = document.getElementById("moon");
+    const rectMoon = moon.getBoundingClientRect();
+    let sunWidth = rectSun.width;
+    let distance = Math.sqrt(Math.pow(rectSun.top-rectMoon.top,2)+Math.pow(rectSun.left-rectMoon.left,2));
+
+    /*Solar Eclipse */
+    if (distance < sunWidth && (rectSun.left/window.innerWidth*100 > 30) && rectSun.left>rectMoon.left && (rectSun.left/window.innerWidth*100 < 60)){
+        document.body.style.transitionDuration ="2s";  
+        document.body.style.backgroundColor = '#8b8b76';  
+        $('body').css('background-color', '#8b8b76');  
+
+    }else if(distance > sunWidth/2 && distance < sunWidth && rectSun.left<=rectMoon.left && (rectSun.left/window.innerWidth*100 > 30)){
+        
+        document.body.style.transitionDuration ="2s"; 
+        document.body.style.backgroundColor = '#fff';
+        $('.body').css('background-color', '#fff');
+ 
+    }else{
+    
+      
+    }
+    window.requestAnimationFrame(checkOverlap)
+}
+
+
+ checkOverlap();
+  

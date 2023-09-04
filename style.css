@@ -5,6 +5,11 @@
   }
 
 body{
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    margin-top: 0px;
+    margin-bottom: 0px;
     margin-left:  2.7vw;
     margin-right:  2.7vw;
     font-family: 'PPMori-Regular';
@@ -29,7 +34,7 @@ body{
 .topLinks{
     display: flex;
     margin-right: 0px;
-    flex-basis: 30%;
+    min-width: 30vw;
     color: black;
     font-size: 32px;
     font-weight: 400;
@@ -52,30 +57,32 @@ ul {
     padding: 0;
     gap:5vw;
   }
-
   .mainContent{
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
     padding-top: 50px;
+    
   }
 
-  
-  .ellips{
-      width: 100vw ;
-      height:100vh;
-      border-radius: 100%;
-      border: 1px solid #333;
-      position: fixed;
-      bottom: -50vh;
-      left:0%;
-      margin: 0px;
-      z-index: -1;
+  .mainContent #intro{
+    flex:0 1 auto;
+    padding-top: 50px;
+    font-size: 60px;
+    font-weight: 400;
+    line-height: 60px;
   }
 
-  :root {
-    --a: 100vw;
-    --b: 50vh;
-    --moonXPosition: -10vw;
-    --moonYPosition: -10vw;
+  .mainContent #selProjects{
+    min-width: 30vw;
+    padding-top: 50px;
+    margin-right: 0px;
+    margin-bottom: 10vh;
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 28px;
   }
+
 
   .sun {
     position: fixed; 
@@ -87,8 +94,8 @@ ul {
     height: 20vmin;
     border-radius: 20vmin;
     z-index: -1;
-    left: -10vw;
-    bottom:  -10vh;
+    left: -20vmin;
+    bottom:  -20vmin;
     background-color: rgb(188, 184, 27);
     animation: move 36s linear infinite;
   }
@@ -131,12 +138,25 @@ ul {
   .moon {
     position: fixed;
     background-color: #c3c3b8;
-    left: -10vw;
-    bottom: -10vh;
+    left: -20vmin;
+    bottom: -20vmin;
     width: 20vmin;
     height: 20vmin;
     border-radius: 10vmin;
     z-index: 0;
-    animation: move 12s linear infinite;
+    animation: move 12s linear infinite, moonOpacity 36s step-end infinite;
    
+  }
+
+  @keyframes moonOpacity {
+    0%{
+      opacity: 0;
+    }
+    33%{
+      opacity: 100;
+    }
+    66%{
+      opacity: 0;
+    }
+    
   }
