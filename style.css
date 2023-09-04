@@ -5,6 +5,11 @@
   }
 
 body{
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    margin-top: 0px;
+    margin-bottom: 0px;
     margin-left:  2.7vw;
     margin-right:  2.7vw;
     font-family: 'PPMori-Regular';
@@ -29,7 +34,7 @@ body{
 .topLinks{
     display: flex;
     margin-right: 0px;
-    flex-basis: 30%;
+    min-width: 30vw;
     color: black;
     font-size: 32px;
     font-weight: 400;
@@ -52,12 +57,32 @@ ul {
     padding: 0;
     gap:5vw;
   }
-
   .mainContent{
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
     padding-top: 50px;
+    
   }
 
- 
+  .mainContent #intro{
+    flex:0 1 auto;
+    padding-top: 50px;
+    font-size: 60px;
+    font-weight: 400;
+    line-height: 60px;
+  }
+
+  .mainContent #selProjects{
+    min-width: 30vw;
+    padding-top: 50px;
+    margin-right: 0px;
+    margin-bottom: 10vh;
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 28px;
+  }
+
 
   .sun {
     position: fixed; 
@@ -65,25 +90,16 @@ ul {
     filter: contrast(100%) brightness(100%);
     background: 
       radial-gradient(circle at 50% 50%, rgba(255,241,79,1), rgba(255,181,0,1));
-
     width: 20vmin;
     height: 20vmin;
     border-radius: 20vmin;
     z-index: -1;
-    left: 0%;
-    right: 0%;
-    bottom: 100%; 
+    left: -20vmin;
+    bottom:  -20vmin;
     background-color: rgb(188, 184, 27);
-    
-    
+    animation: move 36s linear infinite;
   }
 
-  @keyframes myOrbit {
-    from { transform: rotate(0deg) translateX(0vw); }
-    to   { transform: rotate(360deg) translateX(0vw); }
-}
-
-  
   /* Isolation creates a new stacking context for mix-blend-mode. See: https://developer.mozilla.org/en-US/docs/Web/CSS/isolation */
   .isolate {
     
@@ -122,11 +138,25 @@ ul {
   .moon {
     position: fixed;
     background-color: #c3c3b8;
-    left: 0%;
-    top: 30%;
+    left: -20vmin;
+    bottom: -20vmin;
     width: 20vmin;
     height: 20vmin;
     border-radius: 10vmin;
     z-index: 0;
+    animation: move 12s linear infinite, moonOpacity 36s step-end infinite;
    
+  }
+
+  @keyframes moonOpacity {
+    0%{
+      opacity: 0;
+    }
+    33%{
+      opacity: 100;
+    }
+    66%{
+      opacity: 0;
+    }
+    
   }
